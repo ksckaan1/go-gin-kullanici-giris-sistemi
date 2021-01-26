@@ -1,0 +1,12 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+form{
+    margin: auto;
+    padding: 5px;
+    width: 200px;
+    text-align: center;
+}
