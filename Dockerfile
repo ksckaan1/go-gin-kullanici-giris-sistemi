@@ -1,9 +1,14 @@
-FROM golang:1.15.0-alpine 
+FROM golang:1.15.0 AS builder
 
-WORKDIR /go/src/app
-COPY . .
+WORKDIR /app
+COPY . . 
 
 RUN go mod download 
-RUN go build .
+ENV CGO_ENABLED=0
+RUN go build -o main . 
 
-CMD ["./go-gin-kullanici-giris-sistemi"]
+FROM alpine:3.13
+
+COPY --from=builder /app . 
+
+CMD ["./main"]
